@@ -42,7 +42,9 @@ from reportlab.pdfgen import canvas as rl_canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.utils import ImageReader
 import fitz  # PyMuPDF
-
+# Compatibility fix
+if not hasattr(fitz, 'open'):
+    fitz.open = fitz.Document
 # ─── App Setup ────────────────────────────────────────────────────
 app = FastAPI(
     title="PDFly API",
